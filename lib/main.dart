@@ -2,11 +2,17 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(PerguntaApp());
 
-class PerguntaApp extends StatelessWidget {
+//State<> passa a classe do componente que queremos controlar seu estado
+//Ou seja, temos uma classe p/ gerenciar o estado e outra classe p/ ser
+//nosso componente stateful.
+class PerguntaAppState extends State<PerguntaApp> {
   var perguntaSelecionada = 0;
 
   void responder() {
-    perguntaSelecionada++;
+    setState(() {
+      perguntaSelecionada++;
+    });
+
     print('Pergunta respondida!');
     print(perguntaSelecionada);
   }
@@ -24,10 +30,21 @@ class PerguntaApp extends StatelessWidget {
             body: Column(
               children: [
                 Text(perguntas[perguntaSelecionada]),
-                ElevatedButton(onPressed: responder, child: Text('Resposta 1')),
-                ElevatedButton(onPressed: responder, child: Text('Resposta 2')),
-                ElevatedButton(onPressed: responder, child: Text('Resposta 3'))
+                ElevatedButton(onPressed: responder, child: const Text('Resposta 1')),
+                ElevatedButton(onPressed: responder, child: const Text('Resposta 2')),
+                ElevatedButton(onPressed: responder, child: const Text('Resposta 3'))
               ],
             )));
+  }
+}
+
+class PerguntaApp extends StatefulWidget {
+
+  //Sobreescrevo o método abstrato createState que deve retornar um State,
+  //sendo PerguntaAppState um State:
+  PerguntaAppState createState() {
+
+    //Posso omitir o new, desta forma chamando o construtor
+    return PerguntaAppState();
   }
 }
