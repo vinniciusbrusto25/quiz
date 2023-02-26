@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './questao.dart';
 
 void main() => runApp(PerguntaApp());
 
@@ -25,25 +26,28 @@ class _PerguntaAppState extends State<PerguntaApp> {
     ];
 
     return MaterialApp(
-        home: Scaffold(
-            appBar: AppBar(title: Text('Perguntas')),
-            body: Column(
-              children: [
-                Text(perguntas[_perguntaSelecionada]),
-                ElevatedButton(onPressed: _responder, child: const Text('Resposta 1')),
-                ElevatedButton(onPressed: _responder, child: const Text('Resposta 2')),
-                ElevatedButton(onPressed: _responder, child: const Text('Resposta 3'))
-              ],
-            )));
+      home: Scaffold(
+        appBar: AppBar(title: Text('Perguntas')),
+        body: Column(
+          children: [
+            Questao(perguntas[_perguntaSelecionada]),
+            ElevatedButton(
+                onPressed: _responder, child: const Text('Resposta 1')),
+            ElevatedButton(
+                onPressed: _responder, child: const Text('Resposta 2')),
+            ElevatedButton(
+                onPressed: _responder, child: const Text('Resposta 3'))
+          ],
+        )
+      )
+    );
   }
 }
 
 class PerguntaApp extends StatefulWidget {
-
   //Sobreescrevo o método abstrato createState que deve retornar um State,
   //sendo PerguntaAppState um State:
   _PerguntaAppState createState() {
-
     //Posso omitir o new, desta forma chamando o construtor
     return _PerguntaAppState();
   }
